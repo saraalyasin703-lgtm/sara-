@@ -5,18 +5,18 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
-    public float forwardSpeed = 6f;
-    public float horizontalSpeed = 5f;
+    public float forwardSpeed = 7f;
+    public float horizontalSpeed = 7f;
 
     [Header("Jump")]
-    public float jumpForce = 7f;
+    public float jumpForce = 15f;
 
     [Header("Slide")]
-    public float slideDuration = 0.6f;
+    public float slideDuration = 2f;
 
     [Header("Ground Check")]
     public LayerMask groundLayer;
-    public float groundCheckDistance = 0.3f;
+    public float groundCheckDistance = 0.2f;
 
     private Rigidbody rb;
     private CapsuleCollider col;
