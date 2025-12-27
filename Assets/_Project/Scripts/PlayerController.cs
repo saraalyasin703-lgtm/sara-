@@ -2,26 +2,31 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody), typeof(CapsuleCollider))]
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement")]
-    public float forwardSpeed = 7f;
-    public float horizontalSpeed = 7f;
+    public float forwardSpeed = 7f;                 // السرعة الابتدائية
+    public float speedIncreasePerSecond = 0.5f;     // زيادة السرعة مع الوقت
+    public float maxForwardSpeed = 20f;              // الحد الأقصى للسرعة
+    public float horizontalSpeed = 10f;
+    public float xClamp = 3.5f;
 
     [Header("Jump")]
-    public float jumpForce = 15f;
+    public float jumpForce = 6f;
 
     [Header("Slide")]
-    public float slideDuration = 2f;
+    public float slideDuration = 0.5f;
 
     [Header("Ground Check")]
     public LayerMask groundLayer;
     public float groundCheckDistance = 0.2f;
 
-    private Rigidbody rb;
-    private CapsuleCollider col;
-    private bool isGrounded;
-    private bool isSliding;
+    Rigidbody rb;
+    CapsuleCollider col;
+
+    bool isGrounded;
+    bool isSliding;
 
     float standHeight;
     Vector3 standCenter;
@@ -31,64 +36,67 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         col = GetComponent<CapsuleCollider>();
 
-        // حفظ الوضع الطبيعي
+        // منع الانحراف (الميلان)
+        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
         standHeight = col.height;
         standCenter = col.center;
     }
 
     void Update()
     {
-        MoveForward();
-        MoveHorizontal();
+        // زيادة السرعة مع الوقت
+        forwardSpeed = Mathf.Min(
+            forwardSpeed + speedIncreasePerSecond * Time.deltaTime,
+            maxForwardSpeed
+        );
 
         CheckGround();
         HandleJump();
         HandleSlide();
     }
 
+    void FixedUpdate()
+    {
+        MoveForward();
+        MoveHorizontal();
+    }
+
     // -------------------------
     // Movement
     // -------------------------
-
     void MoveForward()
     {
-        transform.Translate(Vector3.forward * forwardSpeed * Time.deltaTime);
+        Vector3 v = rb.linearVelocity;
+        v.z = forwardSpeed;
+        rb.linearVelocity = v;
     }
 
     void MoveHorizontal()
     {
-        float input = ReadHorizontalInput();
-        transform.Translate(Vector3.right * input * horizontalSpeed * Time.deltaTime);
-    }
+        float input = 0f;
 
-    float ReadHorizontalInput()
-    {
-        if (Keyboard.current == null) return 0f;
+        if (Keyboard.current != null)
+        {
+            float right = (Keyboard.current.rightArrowKey.isPressed || Keyboard.current.dKey.isPressed) ? 1f : 0f;
+            float left = (Keyboard.current.leftArrowKey.isPressed || Keyboard.current.aKey.isPressed) ? 1f : 0f;
+            input = right - left;
+        }
 
-        float right =
-            (Keyboard.current.rightArrowKey.isPressed || Keyboard.current.dKey.isPressed) ? 1f : 0f;
+        Vector3 pos = rb.position;
+        pos.x += input * horizontalSpeed * Time.fixedDeltaTime;
+        pos.x = Mathf.Clamp(pos.x, -xClamp, xClamp);
 
-        float left =
-            (Keyboard.current.leftArrowKey.isPressed || Keyboard.current.aKey.isPressed) ? 1f : 0f;
-
-        return right - left;
+        rb.MovePosition(pos);
     }
 
     // -------------------------
     // Ground + Jump
     // -------------------------
-
     void CheckGround()
     {
-        if (col == null)
-        {
-            isGrounded = false;
-            return;
-        }
-
         Vector3 origin = col.bounds.center;
         float rayLength = col.bounds.extents.y + groundCheckDistance;
-
         isGrounded = Physics.Raycast(origin, Vector3.down, rayLength, groundLayer);
     }
 
@@ -104,7 +112,6 @@ public class PlayerController : MonoBehaviour
     // -------------------------
     // Slide
     // -------------------------
-
     void HandleSlide()
     {
         if (Keyboard.current == null) return;
@@ -118,18 +125,14 @@ public class PlayerController : MonoBehaviour
     {
         isSliding = true;
 
-        // تصغير جسم اللاعب
         col.height = standHeight * 0.5f;
-        col.center = standCenter * 0.5f;
+        col.center = new Vector3(standCenter.x, standCenter.y * 0.5f, standCenter.z);
 
         yield return new WaitForSeconds(slideDuration);
 
-        // رجوع للوضع الطبيعي
         col.height = standHeight;
         col.center = standCenter;
 
         isSliding = false;
     }
 }
-
-
