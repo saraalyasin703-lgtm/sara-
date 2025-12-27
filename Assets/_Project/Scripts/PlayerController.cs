@@ -37,8 +37,7 @@ public class PlayerController : MonoBehaviour
         col = GetComponent<CapsuleCollider>();
 
         // منع الانحراف (الميلان)
-        rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
         standHeight = col.height;
         standCenter = col.center;
     }
@@ -135,4 +134,13 @@ public class PlayerController : MonoBehaviour
 
         isSliding = false;
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Obstacle"))
+        {
+            Debug.Log("Hit obstacle");
+            // later: health--, stun, etc.
+        }
+    }
+
 }
