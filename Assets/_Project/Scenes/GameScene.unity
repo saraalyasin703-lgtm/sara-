@@ -185,7 +185,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 81661fa0e26a3db47b236076d7aae90d, type: 2}
     - target: {fileID: 919132149155446097, guid: 11d592754a6ccaa4db38eb4aa2772a89, type: 3}
       propertyPath: m_Name
-      value: aircraft-i_003
+      value: plan player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -594,27 +594,27 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4081050232577894929, guid: c2bc4dfc97790254084bc8ac3d0abbbc, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.17332031
+      value: 0.1580048
       objectReference: {fileID: 0}
     - target: {fileID: 4081050232577894929, guid: c2bc4dfc97790254084bc8ac3d0abbbc, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.17332031
+      value: 0.13982028
       objectReference: {fileID: 0}
     - target: {fileID: 4081050232577894929, guid: c2bc4dfc97790254084bc8ac3d0abbbc, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.17332031
+      value: 0.1779133
       objectReference: {fileID: 0}
     - target: {fileID: 4081050232577894929, guid: c2bc4dfc97790254084bc8ac3d0abbbc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.1236
+      value: 3.8372
       objectReference: {fileID: 0}
     - target: {fileID: 4081050232577894929, guid: c2bc4dfc97790254084bc8ac3d0abbbc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.43079
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 4081050232577894929, guid: c2bc4dfc97790254084bc8ac3d0abbbc, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.8935
+      value: 3.8413
       objectReference: {fileID: 0}
     - target: {fileID: 4081050232577894929, guid: c2bc4dfc97790254084bc8ac3d0abbbc, type: 3}
       propertyPath: m_LocalRotation.w
@@ -932,7 +932,7 @@ MonoBehaviour:
   slideDuration: 0.7
   groundLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 0
   groundCheckDistance: 0.2
 --- !u!1001 &647825839
 PrefabInstance:
@@ -956,7 +956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4081050232577894929, guid: c2bc4dfc97790254084bc8ac3d0abbbc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.361
+      value: 11.12
       objectReference: {fileID: 0}
     - target: {fileID: 4081050232577894929, guid: c2bc4dfc97790254084bc8ac3d0abbbc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1092,7 +1092,8 @@ PrefabInstance:
       value: valley-part-1 (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 3037381732972153240, guid: df33887b5064b624da1e27befe2cb28f, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df33887b5064b624da1e27befe2cb28f, type: 3}
@@ -1626,7 +1627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 414a8ea18a2165045948e56629c02ee3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.27
+      value: 0.07
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 414a8ea18a2165045948e56629c02ee3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2079,6 +2080,7 @@ SceneRoots:
   - {fileID: 836144763}
   - {fileID: 639819773}
   - {fileID: 503345214}
+  - {fileID: 88083941}
   - {fileID: 978913527}
   - {fileID: 732346504}
   - {fileID: 673683254}
@@ -2090,6 +2092,5 @@ SceneRoots:
   - {fileID: 373162248}
   - {fileID: 1174672854}
   - {fileID: 647825839}
-  - {fileID: 88083941}
   - {fileID: 1193409173}
   - {fileID: 1066628494}
