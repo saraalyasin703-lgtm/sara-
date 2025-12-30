@@ -1,48 +1,34 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TrackSpawner : MonoBehaviour
 {
-    public Transform player;
-    public GameObject segmentPrefab;
+    public Transform player;          // اللاعب
+    public GameObject trackPrefab;    // قطعة الطريق
 
-    public float segmentLength = 30f;
-    public int startSegments = 8;
-    public float spawnAheadDistance = 90f;
-    public int maxSegmentsAlive = 12;
+    public float trackLength = 30f;   // طول القطعة
+    public int startTracks = 5;       // عدد القطع بالبداية
 
-    private float nextSpawnZ = 0f;
-    private Queue<GameObject> spawned = new Queue<GameObject>();
+    private float spawnZ = 0f;        // مكان إنشاء الطريق
 
     void Start()
     {
-        for (int i = 0; i < startSegments; i++)
+        for (int i = 0; i < startTracks; i++)
         {
-            SpawnSegment();
+            SpawnTrack();
         }
     }
 
     void Update()
     {
-        if (player != null && player.position.z + spawnAheadDistance > nextSpawnZ)
+        if (player.position.z > spawnZ - (trackLength * 2))
         {
-            SpawnSegment();
+            SpawnTrack();
         }
     }
 
-    void SpawnSegment()
+    void SpawnTrack()
     {
-        if (segmentPrefab == null) return;
-
-        Vector3 pos = new Vector3(0f, 0f, nextSpawnZ);
-        GameObject seg = Instantiate(segmentPrefab, pos, Quaternion.identity);
-
-        spawned.Enqueue(seg);
-        nextSpawnZ += segmentLength;
-
-        if (spawned.Count > maxSegmentsAlive)
-        {
-            Destroy(spawned.Dequeue());
-        }
+        Instantiate(trackPrefab, new Vector3(0, 0, spawnZ), Quaternion.identity);
+        spawnZ += trackLength;
     }
 }
