@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 210011781}
   m_Layer: 3
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -446,7 +446,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   forwardSpeed: 6
   horizontalSpeed: 5
-  jumpForce: 7
+  jumpForce: 5
 --- !u!136 &210011776
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1360,7 +1360,7 @@ PrefabInstance:
       objectReference: {fileID: 2010621326}
     - target: {fileID: 898790067328742495, guid: 1888fb4da1e24914f83c8354e1e68ee5, type: 3}
       propertyPath: m_VersionIndex
-      value: 1918
+      value: 2944
       objectReference: {fileID: 0}
     - target: {fileID: 898790067328742495, guid: 1888fb4da1e24914f83c8354e1e68ee5, type: 3}
       propertyPath: m_SelectedEdges.Array.size
@@ -1373,6 +1373,10 @@ PrefabInstance:
     - target: {fileID: 898790067328742495, guid: 1888fb4da1e24914f83c8354e1e68ee5, type: 3}
       propertyPath: m_SelectedVertices.Array.size
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337252196286360150, guid: 1888fb4da1e24914f83c8354e1e68ee5, type: 3}
+      propertyPath: m_Name
+      value: Environment
       objectReference: {fileID: 0}
     - target: {fileID: 1698497178396312111, guid: 1888fb4da1e24914f83c8354e1e68ee5, type: 3}
       propertyPath: m_Mesh
@@ -1388,7 +1392,7 @@ PrefabInstance:
       objectReference: {fileID: 573459629}
     - target: {fileID: 1762779075574910891, guid: 1888fb4da1e24914f83c8354e1e68ee5, type: 3}
       propertyPath: m_VersionIndex
-      value: 2037
+      value: 3063
       objectReference: {fileID: 0}
     - target: {fileID: 1920275515048517916, guid: 1888fb4da1e24914f83c8354e1e68ee5, type: 3}
       propertyPath: m_Layer
@@ -1402,6 +1406,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 573459629}
+    - target: {fileID: 3046064774580439228, guid: 1888fb4da1e24914f83c8354e1e68ee5, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: dc7738a8898ee45489cbc1ea02df257f, type: 2}
     - target: {fileID: 4013184821131391107, guid: 1888fb4da1e24914f83c8354e1e68ee5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
