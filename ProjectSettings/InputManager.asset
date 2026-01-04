@@ -485,3 +485,7 @@ InputManager:
     type: 2
     axis: 5
     joyNum: 0
+<<<<<<< HEAD
+=======
+  m_UsePhysicalKeys: 1
+>>>>>>> 696f36122f6a2b8e4473d0fc1bc558527ab63e0d
